@@ -341,6 +341,26 @@
         .chat-input-wrap{flex:1;position:relative;display:flex;align-items:center}
         .chat-input-wrap .lg-input{padding-right:58px}
         .chat-input-wrap .char-count{position:absolute;right:12px;pointer-events:none;font-size:.72rem}
+        .mf-btn-group{display:flex;align-items:center;gap:8px}
+        .icon-photo-btn{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;padding:0 12px;font-size:1.12rem;background:var(--tile-bg);border:1px solid var(--tile-border);border-radius:14px;color:var(--text-strong);cursor:pointer;flex-shrink:0;transition:transform .2s var(--ease),background .2s ease,border-color .2s ease}
+        .icon-photo-btn:hover{background:var(--tile-bg-hover);border-color:var(--accent);transform:translateY(-1px)}
+        .icon-photo-btn:active{transform:scale(.94)}
+        .photo-preview{display:flex;align-items:center;gap:10px;padding:8px 10px;width:fit-content;max-width:100%;background:var(--tile-bg);border:1px solid var(--tile-border);border-radius:14px}
+        .photo-preview[hidden]{display:none}
+        .photo-preview img{width:56px;height:56px;object-fit:cover;border-radius:10px;display:block;border:1px solid var(--tile-border)}
+        .photo-preview-info{font-size:.76rem;color:var(--text-sub);line-height:1.3}
+        .photo-preview-info strong{display:block;color:var(--text-strong);font-weight:600}
+        .preview-clear{width:30px;height:30px;border-radius:50%;border:1px solid var(--tile-border);background:rgba(248,113,113,.2);color:var(--text-strong);font-size:.82rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s ease,transform .2s var(--ease)}
+        .preview-clear:hover{background:rgba(248,113,113,.38);transform:scale(1.06)}
+        .msg-photo{width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin-top:8px;cursor:pointer;display:block;border:1px solid rgba(255,255,255,.14);transition:transform .25s var(--ease),opacity .25s ease}
+        .msg-photo:hover{transform:scale(1.015);opacity:.95}
+        .lightbox-overlay{display:none;position:fixed;inset:0;padding:20px;align-items:center;justify-content:center;background:rgba(2,6,16,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:10050}
+        .lightbox-overlay.active{display:flex;animation:fadeIn .25s ease}
+        .lightbox-box{position:relative;max-width:min(92vw,760px);max-height:88vh;padding:12px;border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.24);box-shadow:0 28px 70px rgba(0,0,0,.75);display:flex;flex-direction:column;align-items:center;gap:10px;animation:popIn .35s var(--ease)}
+        .lightbox-box img{max-width:100%;max-height:calc(88vh - 70px);object-fit:contain;border-radius:14px;display:block}
+        .lightbox-cap{font-size:.82rem;color:#e2eefa;text-align:center;max-width:100%;word-break:break-word}
+        .lightbox-close{position:absolute;top:-14px;right:-14px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(8,18,30,.92);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.5);transition:transform .2s var(--ease),background .2s ease}
+        .lightbox-close:hover{background:#ef4444;transform:scale(1.08)}
         html[data-theme="light"] .neon-btn{color:#fff}
         html[data-theme="light"] .mf-cat-btn.active{color:#fff;background:linear-gradient(135deg,#0b8fb0,#2563EB)}
         html[data-theme="light"] .mf-from{border-top-color:rgba(40,90,140,.12)}
@@ -348,6 +368,7 @@
         html[data-theme="light"] .chat-bubble.other{background:rgba(255,255,255,.85);border-color:rgba(120,165,205,.35)}
         html[data-theme="light"] .chat-bubble.mine{background:linear-gradient(135deg,rgba(11,143,176,.20),rgba(37,99,235,.22));border-color:rgba(11,143,176,.45)}
         html[data-theme="light"] .chat-bubble.mine .chat-sender{color:#0c4a6e}
+        html[data-theme="light"] .msg-photo{border-color:rgba(40,90,140,.2)}
 
         /* ---------- Modal profil ---------- */
         .modal-overlay {
@@ -1017,6 +1038,7 @@
             .mf-grid { grid-template-columns: 1fr; }
             .chat-bubble { max-width: 88%; }
             .chat-form { flex-wrap: wrap; }
+            .chat-form .chat-input-wrap { min-width: 0; }
             .chat-form .neon-btn { width: 100%; }
         }
         @media (max-width: 480px) {
@@ -1263,13 +1285,22 @@
                     <button type="button" class="mf-cat-btn" data-cat="Curhat" aria-pressed="false">Curhat</button>
                 </div>
             </div>
+            <div id="mfPreview" class="photo-preview" hidden>
+                <img id="mfPreviewImg" alt="Preview foto menfess">
+                <div class="photo-preview-info"><strong>Foto Menfess</strong><span id="mfPreviewSize">Siap dikirim</span></div>
+                <button type="button" id="mfClearPhoto" class="preview-clear" aria-label="Batalkan foto menfess">✕</button>
+            </div>
             <textarea id="mfMsg" class="lg-textarea" maxlength="150" placeholder="Tulis menfess atau quotes kamu di sini (maks. 150 karakter)..." aria-label="Isi pesan menfess"></textarea>
             <div class="mf-actions">
                 <div class="mf-meta-bar">
                     <span id="mfCount" class="char-count">0/150</span>
                     <span id="mfStatus" class="form-status" aria-live="polite"></span>
                 </div>
-                <button type="submit" id="mfSubmitBtn" class="neon-btn">Kirim Menfess</button>
+                <div class="mf-btn-group">
+                    <input type="file" id="mfFile" accept="image/*" hidden>
+                    <button type="button" id="mfPhotoBtn" class="icon-photo-btn" title="Pilih foto dari galeri" aria-label="Pilih foto untuk Menfess">📷</button>
+                    <button type="submit" id="mfSubmitBtn" class="neon-btn">Kirim Menfess</button>
+                </div>
             </div>
         </form>
 
@@ -1315,7 +1346,15 @@
                 <div class="chat-empty">Memuat obrolan kelas 7B...</div>
             </div>
 
+            <div id="chatPreview" class="photo-preview" hidden>
+                <img id="chatPreviewImg" alt="Preview foto chat">
+                <div class="photo-preview-info"><strong>Foto Chat</strong><span id="chatPreviewSize">Siap dikirim</span></div>
+                <button type="button" id="chatClearPhoto" class="preview-clear" aria-label="Batalkan foto chat">✕</button>
+            </div>
+
             <form id="chatForm" class="chat-form" novalidate>
+                <input type="file" id="chatFile" accept="image/*" hidden>
+                <button type="button" id="chatPhotoBtn" class="icon-photo-btn" title="Kirim foto dari galeri" aria-label="Pilih foto untuk Live Chat">📷</button>
                 <div class="chat-input-wrap">
                     <input id="chatInput" class="lg-input" type="text" maxlength="200" placeholder="Ketik pesan (maks. 200 karakter, tekan Enter)..." aria-label="Tulis pesan chat">
                     <span id="chatCount" class="char-count">0/200</span>
@@ -1336,6 +1375,15 @@
                 <p><strong>Hobi / Minat</strong> <span id="infoHobi">-</span></p>
             </div>
             <button class="close-btn" id="closeBtn">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- Lightbox Foto Menfess & Chat -->
+    <div class="lightbox-overlay" id="imgLightbox" role="dialog" aria-modal="true" aria-label="Tampilan penuh foto">
+        <div class="lightbox-box">
+            <button type="button" class="lightbox-close" id="lbCloseBtn" aria-label="Tutup foto">✕</button>
+            <img id="lbImg" alt="Foto ukuran penuh">
+            <div class="lightbox-cap" id="lbCap"></div>
         </div>
     </div>
 
@@ -1774,7 +1822,7 @@
 })();
 </script>
 <script>
-// --- 8. Papan Menfess & Live Chat 7B (Firebase RTDB REST API) ---
+// --- 8. Papan Menfess & Live Chat 7B (Firebase RTDB REST API + Upload Foto) ---
 (function(){
   const DB='https://menfess-7b-default-rtdb.asia-southeast1.firebasedatabase.app';
   const MF_URL=DB+'/menfess.json',CH_URL=DB+'/chat7b.json';
@@ -1783,11 +1831,54 @@
   const fmtT=ts=>{const d=new Date(ts);return !ts||isNaN(d)?'Baru saja':d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})};
   const fmtD=ts=>{const d=new Date(ts);return !ts||isNaN(d)?'Online':d.toLocaleDateString('id-ID',{day:'2-digit',month:'short'})+' '+fmtT(ts)};
   const el=(t,c,txt)=>{const n=document.createElement(t);if(c)n.className=c;if(txt!==undefined)n.textContent=txt;return n};
+  const isImg=s=>typeof s==='string'&&s.startsWith('data:image/');
 
+  // Lightbox foto
+  const lb=document.getElementById('imgLightbox'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),lbClose=document.getElementById('lbCloseBtn');
+  function openLb(src,cap){
+    if(!isImg(src))return;
+    lbImg.src=src;lbCap.textContent=cap||'';lb.classList.add('active');
+  }
+  const closeLb=()=>{lb.classList.remove('active');lbImg.removeAttribute('src')};
+  lbClose.addEventListener('click',closeLb);
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.classList.contains('active'))closeLb()});
+
+  // Kompresi otomatis canvas (max lebar 450px, JPEG kualitas 0.6)
+  function compressPhoto(file){
+    return new Promise((res,rej)=>{
+      if(!file||!file.type.startsWith('image/'))return rej('Pilih file gambar ya!');
+      const rd=new FileReader();
+      rd.onerror=()=>rej('Gagal membaca file.');
+      rd.onload=ev=>{
+        const img=new Image();
+        img.onerror=()=>rej('Format gambar tidak didukung.');
+        img.onload=()=>{
+          let w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;
+          if(w>450){h=Math.round(h*450/w);w=450}
+          const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+          const cx=cv.getContext('2d');cx.fillStyle='#ffffff';cx.fillRect(0,0,w,h);cx.drawImage(img,0,0,w,h);
+          res(cv.toDataURL('image/jpeg',0.6));
+        };
+        img.src=ev.target.result;
+      };
+      rd.readAsDataURL(file);
+    });
+  }
+
+  function makePhotoEl(src,cap,onLoad){
+    const im=el('img','msg-photo');im.alt=cap||'Foto kiriman 7B';im.loading='lazy';im.src=src;
+    if(onLoad)im.addEventListener('load',onLoad,{once:true});
+    im.addEventListener('click',()=>openLb(src,cap));
+    return im;
+  }
+
+  // --- Papan Menfess ---
   const mfForm=document.getElementById('mfForm'),mfSender=document.getElementById('mfSender'),mfMsg=document.getElementById('mfMsg');
   const mfCount=document.getElementById('mfCount'),mfStatus=document.getElementById('mfStatus'),mfBtn=document.getElementById('mfSubmitBtn'),mfGrid=document.getElementById('mfGrid');
+  const mfFile=document.getElementById('mfFile'),mfPhotoBtn=document.getElementById('mfPhotoBtn'),mfPrev=document.getElementById('mfPreview'),mfPrevImg=document.getElementById('mfPreviewImg'),mfPrevSz=document.getElementById('mfPreviewSize'),mfClear=document.getElementById('mfClearPhoto');
   const samples=Array.from(mfGrid.querySelectorAll('[data-sample="1"]'));
-  let cat='Semangat';
+  let cat='Semangat',mfPhoto='';
 
   document.querySelectorAll('.mf-cat-btn').forEach(b=>b.addEventListener('click',()=>{
     cat=b.dataset.cat||'Semangat';
@@ -1795,15 +1886,32 @@
   }));
   mfMsg.addEventListener('input',()=>{const l=mfMsg.value.length;mfCount.textContent=l+'/150';mfCount.classList.toggle('near',l>=130)});
   const setMf=(m,e)=>{mfStatus.textContent=m;mfStatus.classList.toggle('err',!!e)};
+  const clearMfPhoto=()=>{mfPhoto='';mfFile.value='';mfPrev.hidden=true;mfPrevImg.removeAttribute('src')};
+
+  mfPhotoBtn.addEventListener('click',()=>mfFile.click());
+  mfClear.addEventListener('click',clearMfPhoto);
+  mfFile.addEventListener('change',async()=>{
+    const f=mfFile.files&&mfFile.files[0];if(!f)return;
+    try{
+      setMf('Mengompres foto...',0);
+      mfPhoto=await compressPhoto(f);
+      mfPrevImg.src=mfPhoto;mfPrevSz.textContent=Math.round(mfPhoto.length*0.75/1024)+' KB • Siap dikirim';
+      mfPrev.hidden=false;setMf('',0);
+    }catch(err){clearMfPhoto();setMf(typeof err==='string'?err:'Gagal memproses foto.',1)}
+  });
 
   function makeCard(x){
     const cats=['Semangat','Quotes','Random','Curhat'],rc=String(x.category||x.kategori||'Random'),c=cats.includes(rc)?rc:'Random';
     const card=el('article','mf-card');card.dataset.cat=c;
     const top=el('div'),meta=el('div','mf-meta');
+    const sender=censor(x.sender||x.dari||'Anonim').trim()||'Anonim';
+    const msg=censor(x.message||x.pesan||x.text||'').trim();
     meta.append(el('span','mf-cat-label',c),el('span','',x.timeLabel||fmtD(x.timestamp||x.createdAt)));
-    top.append(meta,el('p','mf-body',censor(x.message||x.pesan||x.text||'').trim()));
+    top.appendChild(meta);
+    if(msg)top.appendChild(el('p','mf-body',msg));
+    if(isImg(x.foto))top.appendChild(makePhotoEl(x.foto,'Dari: '+sender+(msg?' — '+msg:'')));
     const from=el('div','mf-from');
-    from.append(el('span','','Dari: '+(censor(x.sender||x.dari||'Anonim').trim()||'Anonim')),el('span','','Live'));
+    from.append(el('span','','Dari: '+sender),el('span','','Live'));
     card.append(top,from);return card;
   }
 
@@ -1812,7 +1920,7 @@
       const r=await fetch(MF_URL);if(!r.ok)throw 0;
       const d=await r.json();mfGrid.textContent='';
       if(d&&typeof d==='object'){
-        Object.keys(d).map(k=>Object.assign({_k:k},d[k])).filter(x=>x&&(x.message||x.pesan||x.text))
+        Object.keys(d).map(k=>Object.assign({_k:k},d[k])).filter(x=>x&&(x.message||x.pesan||x.text||isImg(x.foto)))
           .sort((a,b)=>(Number(b.timestamp||b.createdAt||0)-Number(a.timestamp||a.createdAt||0))||(a._k<b._k?1:-1))
           .forEach(x=>mfGrid.appendChild(makeCard(x)));
       }
@@ -1823,21 +1931,24 @@
   mfForm.addEventListener('submit',async e=>{
     e.preventDefault();
     const raw=mfMsg.value.trim();
-    if(!raw){setMf('Tulis pesan menfess dulu ya!',1);mfMsg.focus();return}
+    if(!raw&&!mfPhoto){setMf('Tulis pesan atau pilih foto dulu ya!',1);mfMsg.focus();return}
     const now=Date.now(),p={sender:censor(mfSender.value.trim()||'Anonim').slice(0,30)||'Anonim',category:cat,message:censor(raw).slice(0,150),timestamp:now,timeLabel:fmtD(now)};
+    if(mfPhoto)p.foto=mfPhoto;
     mfBtn.disabled=true;mfBtn.textContent='Mengirim...';setMf('Mengirim ke papan menfess...',0);
     try{
       const r=await fetch(MF_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
       if(!r.ok)throw 0;
-      mfMsg.value='';mfCount.textContent='0/150';mfCount.classList.remove('near');
+      mfMsg.value='';mfCount.textContent='0/150';mfCount.classList.remove('near');clearMfPhoto();
       setMf('Menfess berhasil dikirim!',0);await loadMf();setTimeout(()=>setMf('',0),3000);
     }catch(_){setMf('Gagal mengirim menfess. Coba lagi ya.',1)}
     finally{mfBtn.disabled=false;mfBtn.textContent='Kirim Menfess'}
   });
 
+  // --- Live Chat 7B ---
   const cName=document.getElementById('chatName'),cMeta=document.getElementById('chatMeta'),cList=document.getElementById('chatList');
   const cForm=document.getElementById('chatForm'),cIn=document.getElementById('chatInput'),cCnt=document.getElementById('chatCount'),cBtn=document.getElementById('chatSendBtn'),cSt=document.getElementById('chatStatus');
-  let uid='';
+  const cFile=document.getElementById('chatFile'),cPhotoBtn=document.getElementById('chatPhotoBtn'),cPrev=document.getElementById('chatPreview'),cPrevImg=document.getElementById('chatPreviewImg'),cPrevSz=document.getElementById('chatPreviewSize'),cClear=document.getElementById('chatClearPhoto');
+  let uid='',chatPhoto='';
   try{
     uid=localStorage.getItem('chat7b_uid')||'';
     if(!uid){uid='u_'+Math.random().toString(36).slice(2,10)+Date.now().toString(36);localStorage.setItem('chat7b_uid',uid)}
@@ -1846,6 +1957,19 @@
   cName.addEventListener('input',()=>{try{localStorage.setItem('chat7b_name',cName.value.trim())}catch(_){}});
   cIn.addEventListener('input',()=>{const l=cIn.value.length;cCnt.textContent=l+'/200';cCnt.classList.toggle('near',l>=180)});
   const setCs=(m,e)=>{cSt.textContent=m;cSt.classList.toggle('err',!!e)};
+  const clearChatPhoto=()=>{chatPhoto='';cFile.value='';cPrev.hidden=true;cPrevImg.removeAttribute('src')};
+
+  cPhotoBtn.addEventListener('click',()=>cFile.click());
+  cClear.addEventListener('click',clearChatPhoto);
+  cFile.addEventListener('change',async()=>{
+    const f=cFile.files&&cFile.files[0];if(!f)return;
+    try{
+      setCs('Mengompres foto...',0);
+      chatPhoto=await compressPhoto(f);
+      cPrevImg.src=chatPhoto;cPrevSz.textContent=Math.round(chatPhoto.length*0.75/1024)+' KB • Siap dikirim';
+      cPrev.hidden=false;setCs('',0);
+    }catch(err){clearChatPhoto();setCs(typeof err==='string'?err:'Gagal memproses foto.',1)}
+  });
 
   let lastSig='';
   async function loadChat(force){
@@ -1856,7 +1980,7 @@
         if(lastSig!=='empty'){lastSig='empty';cList.textContent='';cList.appendChild(el('div','chat-empty','Belum ada chat. Mulai obrolan pertama 7B!'))}
         cMeta.textContent='0 pesan • Live';return;
       }
-      const list=Object.keys(d).map(k=>Object.assign({_k:k},d[k])).filter(x=>x&&(x.message||x.pesan||x.text))
+      const list=Object.keys(d).map(k=>Object.assign({_k:k},d[k])).filter(x=>x&&(x.message||x.pesan||x.text||isImg(x.foto)))
         .sort((a,b)=>(Number(a.timestamp||0)-Number(b.timestamp||0))||(a._k<b._k?-1:1)).slice(-80);
       const sig=list.length+':'+(list.length?list[list.length-1]._k:'');
       cMeta.textContent=list.length+' pesan • Live';
@@ -1867,9 +1991,12 @@
       list.forEach(x=>{
         const s=censor(x.name||x.nama||x.sender||'Siswa 7B').trim()||'Siswa 7B';
         const mine=(x.uid&&x.uid===uid)||(myN&&s.toLowerCase()===myN);
+        const msg=censor(x.message||x.pesan||x.text||'').trim();
         const b=el('div','chat-bubble '+(mine?'mine':'other')),h=el('div','chat-head');
         h.append(el('span','chat-sender',mine?s+' (Kamu)':s),el('span','chat-time',x.timeLabel||fmtT(x.timestamp)));
-        b.append(h,el('div','chat-text',censor(x.message||x.pesan||x.text||'').trim()));
+        b.appendChild(h);
+        if(msg)b.appendChild(el('div','chat-text',msg));
+        if(isImg(x.foto))b.appendChild(makePhotoEl(x.foto,s+(msg?': '+msg:''),()=>{cList.scrollTop=cList.scrollHeight}));
         cList.appendChild(b);
       });
       cList.scrollTop=cList.scrollHeight;
@@ -1879,14 +2006,16 @@
   cForm.addEventListener('submit',async e=>{
     e.preventDefault();
     const rn=cName.value.trim();if(!rn){setCs('Isi Nama / Panggilan dulu sebelum chat ya!',1);cName.focus();return}
-    const rm=cIn.value.trim();if(!rm){setCs('Ketik pesan dulu sebelum mengirim.',1);cIn.focus();return}
+    const rm=cIn.value.trim();if(!rm&&!chatPhoto){setCs('Ketik pesan atau pilih foto dulu sebelum mengirim.',1);cIn.focus();return}
     const now=Date.now(),cn=censor(rn).slice(0,24)||'Siswa 7B',cm=censor(rm).slice(0,200);
+    const payload={name:cn,uid:uid,message:cm,timestamp:now,timeLabel:fmtT(now)};
+    if(chatPhoto)payload.foto=chatPhoto;
     try{localStorage.setItem('chat7b_name',cn)}catch(_){}
     cBtn.disabled=true;setCs('',0);
     try{
-      const r=await fetch(CH_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:cn,uid:uid,message:cm,timestamp:now,timeLabel:fmtT(now)})});
+      const r=await fetch(CH_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(!r.ok)throw 0;
-      cIn.value='';cCnt.textContent='0/200';cCnt.classList.remove('near');await loadChat(1);
+      cIn.value='';cCnt.textContent='0/200';cCnt.classList.remove('near');clearChatPhoto();await loadChat(1);
     }catch(_){setCs('Gagal mengirim pesan. Cek koneksi internet kamu.',1)}
     finally{cBtn.disabled=false;cIn.focus()}
   });
