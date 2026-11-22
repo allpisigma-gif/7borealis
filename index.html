@@ -6,7 +6,7 @@
     <title>Kelas 7B • Aurora Borealis</title>
     <meta name="description" content="Portal resmi Kelas 7B Seven Borealis SMP Prima Cendekia Islami dengan jadwal pelajaran, daftar siswa, galeri kegiatan, Papan Menfess, dan Live Chat real-time." />
     <meta property="og:title" content="Kelas 7B • Aurora Borealis" />
-    <meta property="oACg:description" content="Portal resmi Kelas 7B Seven Borealis SMP Prima Cendekia Islami dengan jadwal pelajaran, daftar siswa, galeri kegiatan, Papan Menfess, dan Live Chat real-time." />
+    <meta property="og:description" content="Portal resmi Kelas 7B Seven Borealis SMP Prima Cendekia Islami dengan jadwal pelajaran, daftar siswa, galeri kegiatan, Papan Menfess, dan Live Chat real-time." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#04171c">
@@ -581,6 +581,57 @@
         html[data-theme="light"] #vlPanel{background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(240,248,255,.88));border-color:#fff;box-shadow:inset 0 1px 0 #fff,0 20px 44px -14px rgba(55,105,165,.48)}
         html[data-theme="light"] #vlToggleBtn{background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,255,255,.72));border-color:#fff;box-shadow:inset 0 1px 0 #fff,0 14px 32px -12px rgba(55,105,165,.45)}
         html[data-theme="light"] .vl-peers{background:rgba(11,143,176,.07);border-color:rgba(11,143,176,.16)}
+
+        /* ---------- Banner Mabar Arena 7B & Floating Bubble ---------- */
+        .mabar-banner{border:1.5px solid rgba(34,211,197,.55);background:linear-gradient(145deg,rgba(16,42,66,.68),rgba(4,22,34,.58));animation:mabarPulse 3.2s ease-in-out infinite}
+        @keyframes mabarPulse{0%,100%{border-color:rgba(34,211,197,.52);box-shadow:var(--glass-shadow),0 0 28px -8px rgba(34,211,197,.42)}50%{border-color:rgba(56,189,248,.9);box-shadow:var(--glass-shadow),0 0 42px -4px rgba(56,189,248,.62),0 0 18px -6px rgba(60,242,142,.45)}}
+        .mabar-head{text-align:center;margin-bottom:20px}
+        .mabar-head h2{justify-content:center;font-size:1.45rem;font-weight:700;letter-spacing:-.2px;margin-bottom:6px}
+        .mabar-head .hint-text{margin-bottom:0;font-size:.92rem}
+        .mabar-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+        .mabar-game-btn{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;width:100%;padding:18px 20px;text-align:left;cursor:pointer;color:var(--text-strong);background:linear-gradient(135deg,rgba(34,211,197,.16),rgba(37,99,235,.18));border:1px solid rgba(126,232,250,.36);border-radius:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.26),0 12px 26px -14px rgba(0,0,0,.55);transition:transform .3s var(--ease),border-color .3s ease,box-shadow .3s ease,background .3s ease;-webkit-tap-highlight-color:transparent}
+        .mabar-game-btn.ww{background:linear-gradient(135deg,rgba(129,140,248,.20),rgba(16,185,129,.16));border-color:rgba(165,180,252,.38)}
+        .mabar-game-btn:hover{transform:translateY(-3px) scale(1.01);border-color:#22D3C5;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 18px 34px -14px rgba(34,211,197,.55)}
+        .mabar-game-btn.ww:hover{border-color:#818CF8;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 18px 34px -14px rgba(129,140,248,.55)}
+        .mabar-game-btn:active{transform:scale(.98)}
+        .mabar-ico{width:52px;height:52px;border-radius:15px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22)}
+        .mabar-info{flex:1;min-width:0}
+        .mabar-title{font-size:1.05rem;font-weight:700;color:var(--text-strong);line-height:1.25}
+        .mabar-sub{font-size:.82rem;color:var(--text-sub);margin-top:3px}
+        .mabar-go{font-size:1.25rem;font-weight:700;color:var(--accent);transition:transform .3s var(--ease)}
+        .mabar-game-btn:hover .mabar-go{transform:translateX(4px)}
+        #mabarBubble{position:fixed;top:82px;right:20px;z-index:9997;display:inline-flex;align-items:center;gap:8px;max-width:calc(100vw - 32px);padding:9px 10px 9px 14px;border-radius:16px;background:linear-gradient(135deg,rgba(12,34,54,.84),rgba(5,20,34,.78));backdrop-filter:blur(22px) saturate(165%);-webkit-backdrop-filter:blur(22px) saturate(165%);border:1px solid rgba(126,232,250,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 14px 30px -10px rgba(0,0,0,.6),0 0 22px -6px rgba(34,211,197,.48);color:var(--text-strong);animation:mabarBounce 2.6s ease-in-out infinite}
+        #mabarBubble::before{content:'';position:absolute;top:-7px;right:20px;width:12px;height:12px;transform:rotate(45deg);background:rgba(12,34,54,.88);border-top:1px solid rgba(126,232,250,.55);border-left:1px solid rgba(126,232,250,.55)}
+        #mabarBubble[hidden]{display:none}
+        @keyframes mabarBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+        .mabar-bubble-cta{background:none;border:none;color:inherit;font:600 .8rem/1.3 'Poppins',sans-serif;cursor:pointer;text-align:left;padding:0;-webkit-tap-highlight-color:transparent}
+        .mabar-bubble-close{width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:var(--text-strong);font-size:.72rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s ease,transform .2s var(--ease)}
+        .mabar-bubble-close:hover{background:rgba(248,113,113,.38);transform:scale(1.08)}
+        html[data-theme="light"] .mabar-banner{background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(224,244,255,.72));border-color:rgba(11,143,176,.55)}
+        html[data-theme="light"] .mabar-game-btn{background:linear-gradient(135deg,rgba(11,143,176,.14),rgba(37,99,235,.12));border-color:rgba(11,143,176,.35)}
+        html[data-theme="light"] .mabar-game-btn.ww{background:linear-gradient(135deg,rgba(99,102,241,.14),rgba(16,185,129,.12));border-color:rgba(99,102,241,.35)}
+        html[data-theme="light"] .mabar-ico{background:rgba(255,255,255,.78);border-color:rgba(11,143,176,.22)}
+        html[data-theme="light"] #mabarBubble{background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(232,246,255,.88));border-color:rgba(11,143,176,.55);box-shadow:inset 0 1px 0 #fff,0 14px 30px -10px rgba(55,105,165,.42)}
+        html[data-theme="light"] #mabarBubble::before{background:rgba(255,255,255,.95);border-color:rgba(11,143,176,.55)}
+        html[data-theme="light"] .mabar-bubble-close{background:rgba(11,143,176,.12);border-color:rgba(11,143,176,.3);color:var(--text-strong)}
+        @media(max-width:720px){.mabar-grid{grid-template-columns:1fr}.mabar-head h2{font-size:1.2rem}#mabarBubble{top:78px;right:14px}}
+        @media(prefers-reduced-motion:reduce){.mabar-banner,#mabarBubble{animation:none!important}}
+
+        /* ---------- Tombol Hapus Chat & Menfess + Modal Konfirmasi ---------- */
+        .chat-head-right,.mf-from-right{display:inline-flex;align-items:center;gap:6px}
+        .del-msg-btn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--text-sub);font-size:.76rem;line-height:1;cursor:pointer;opacity:.76;transition:opacity .2s ease,background .2s ease,border-color .2s ease,transform .18s var(--ease);-webkit-tap-highlight-color:transparent}
+        .del-msg-btn:hover{opacity:1;background:rgba(248,113,113,.22);border-color:rgba(248,113,113,.45);transform:scale(1.08)}
+        .del-msg-btn:active{transform:scale(.92)}
+        .confirm-box{max-width:340px;padding:24px 22px 22px}
+        .confirm-box h3{font-size:1.15rem;margin-bottom:8px}
+        .confirm-desc{font-size:.84rem;color:var(--text-sub);margin-bottom:20px;line-height:1.45}
+        .confirm-acts{display:flex;align-items:center;justify-content:center;gap:10px}
+        .confirm-acts button{flex:1;min-height:40px;padding:9px 16px;font-size:.84rem;font-weight:600;border-radius:14px;cursor:pointer;transition:transform .2s var(--ease),background .2s ease,opacity .2s ease}
+        .confirm-cancel{background:var(--tile-bg);border:1px solid var(--tile-border);color:var(--text-strong)}
+        .confirm-cancel:hover{background:var(--tile-bg-hover)}
+        .confirm-del{background:linear-gradient(135deg,#ef4444,#dc2626);border:1px solid rgba(252,165,165,.55);color:#fff;box-shadow:0 8px 20px -6px rgba(239,68,68,.55)}
+        .confirm-del:hover{transform:translateY(-1px)}
+        .confirm-del:disabled{opacity:.6;cursor:not-allowed;transform:none}
     </style>
 </head>
 <body>
@@ -651,6 +702,32 @@
             <div class="time-segment"><div class="time-number" id="seconds">00</div><div class="time-label">Detik</div></div>
         </div>
     </div>
+
+    <!-- Banner Ajakan Mabar Arena 7B -->
+    <section class="glass-panel mabar-banner" id="mabarArena" aria-labelledby="mabarHeading">
+        <div class="mabar-head">
+            <h2 id="mabarHeading">🎮 BOSAN? YUK MABAR BARENG ANAK 7B!</h2>
+            <p class="hint-text">Main langsung di browser tanpa download aplikasi!</p>
+        </div>
+        <div class="mabar-grid">
+            <button type="button" class="mabar-game-btn" id="mabarGarticBtn">
+                <div class="mabar-ico" aria-hidden="true">🎨</div>
+                <div class="mabar-info">
+                    <div class="mabar-title">Main 7B Gartic</div>
+                    <div class="mabar-sub">Tebak Gambar Bareng • Multiplayer</div>
+                </div>
+                <span class="mabar-go" aria-hidden="true">➜</span>
+            </button>
+            <button type="button" class="mabar-game-btn ww" id="mabarWerewolfBtn">
+                <div class="mabar-ico" aria-hidden="true">🐺</div>
+                <div class="mabar-info">
+                    <div class="mabar-title">Main 7B Werewolf</div>
+                    <div class="mabar-sub">8 Roles • Cari Serigala</div>
+                </div>
+                <span class="mabar-go" aria-hidden="true">➜</span>
+            </button>
+        </div>
+    </section>
 
     <!-- Schedule Panel -->
     <div class="glass-panel reveal" id="schedule">
@@ -1209,6 +1286,18 @@
         </div>
     </div>
 
+    <!-- Modal Konfirmasi Hapus Pesan / Menfess -->
+    <div class="modal-overlay" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+        <div class="modal-box confirm-box">
+            <h3 id="confirmTitle">Hapus pesan ini?</h3>
+            <p class="confirm-desc" id="confirmDesc">Pesan akan dihapus permanen untuk semua anggota 7B.</p>
+            <div class="confirm-acts">
+                <button type="button" id="confirmCancelBtn" class="confirm-cancel">Batal</button>
+                <button type="button" id="confirmOkBtn" class="confirm-del">🗑️ Hapus</button>
+            </div>
+        </div>
+    </div>
+
     </div> <!-- end main-wrapper -->
 
     <script>
@@ -1388,6 +1477,18 @@
         const viewGartic = document.getElementById('view-gartic');
         const viewWerewolf = document.getElementById('view-werewolf');
 
+        const mabarBubble = document.getElementById('mabarBubble');
+        const mabarBubbleBtn = document.getElementById('mabarBubbleBtn');
+        const mabarBubbleClose = document.getElementById('mabarBubbleClose');
+        let mabarDismissed = false;
+        try { mabarDismissed = sessionStorage.getItem('mabarBubbleClosed7b') === '1'; } catch (e) {}
+
+        function syncMabarBubble(view) {
+            if (!mabarBubble) return;
+            const navOpen = navMenu.classList.contains('active');
+            mabarBubble.hidden = mabarDismissed || navOpen || view !== 'home';
+        }
+
         window.switchAppView = function(view, targetHash) {
             const v = (view === 'gartic' || view === 'werewolf') ? view : 'home';
             if (viewHome) viewHome.style.display = v === 'home' ? 'flex' : 'none';
@@ -1407,12 +1508,14 @@
             }
             navToggleBtn.setAttribute('aria-expanded', 'false');
             navMenu.classList.remove('active');
+            syncMabarBubble(v);
         };
 
         navToggleBtn.addEventListener('click', () => {
             const isOpen = navToggleBtn.getAttribute('aria-expanded') === 'true';
             navToggleBtn.setAttribute('aria-expanded', !isOpen);
             navMenu.classList.toggle('active', !isOpen);
+            syncMabarBubble(viewGartic.style.display === 'flex' ? 'gartic' : (viewWerewolf.style.display === 'flex' ? 'werewolf' : 'home'));
         });
 
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -1431,11 +1534,31 @@
         const wwBackBtn = document.getElementById('wwBackBtn');
         if (wwBackBtn) wwBackBtn.addEventListener('click', () => window.switchAppView('home'));
 
+        const mabarGarticBtn = document.getElementById('mabarGarticBtn');
+        if (mabarGarticBtn) mabarGarticBtn.addEventListener('click', () => window.switchAppView('gartic'));
+        const mabarWerewolfBtn = document.getElementById('mabarWerewolfBtn');
+        if (mabarWerewolfBtn) mabarWerewolfBtn.addEventListener('click', () => window.switchAppView('werewolf'));
+        if (mabarBubbleBtn) {
+            mabarBubbleBtn.addEventListener('click', () => {
+                window.switchAppView('home', '#mabarArena');
+            });
+        }
+        if (mabarBubbleClose) {
+            mabarBubbleClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mabarDismissed = true;
+                try { sessionStorage.setItem('mabarBubbleClosed7b', '1'); } catch (err) {}
+                if (mabarBubble) mabarBubble.hidden = true;
+            });
+        }
+        syncMabarBubble('home');
+
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.nav-toggle-wrapper')) {
                 navMenu.classList.remove('active');
                 navToggleBtn.setAttribute('aria-expanded', 'false');
+                syncMabarBubble(viewGartic.style.display === 'flex' ? 'gartic' : (viewWerewolf.style.display === 'flex' ? 'werewolf' : 'home'));
             }
         });
 
@@ -1484,6 +1607,12 @@
             ></iframe>
         </div>
         <button id="jukeboxToggleBtn" type="button" aria-expanded="false" aria-controls="jukeboxBox">🎵 Jukebox 7B</button>
+    </div>
+
+    <!-- Floating Bubble Notifikasi Mabar 7B -->
+    <div id="mabarBubble" role="status" aria-live="polite">
+        <button type="button" id="mabarBubbleBtn" class="mabar-bubble-cta">🔥 Game Mabar 7B Tersedia! Klik di sini 👉</button>
+        <button type="button" id="mabarBubbleClose" class="mabar-bubble-close" aria-label="Tutup notifikasi mabar">✕</button>
     </div>
 
     <!-- Floating Discord-Style Voice Lounge 7B (Pojok kanan bawah) -->
@@ -1748,12 +1877,31 @@
     return im;
   }
 
+  // Modal konfirmasi hapus pesan / menfess
+  const cfmOv=document.getElementById('confirmOverlay'),cfmTtl=document.getElementById('confirmTitle'),cfmDesc=document.getElementById('confirmDesc'),cfmOk=document.getElementById('confirmOkBtn'),cfmNo=document.getElementById('confirmCancelBtn');
+  let cfmAction=null;
+  const closeConfirm=()=>{cfmOv.classList.remove('active');cfmAction=null;cfmOk.disabled=false;cfmOk.textContent='🗑️ Hapus'};
+  function askConfirm(title,desc,onYes){
+    cfmTtl.textContent=title||'Hapus pesan ini?';
+    cfmDesc.textContent=desc||'Pesan akan dihapus permanen untuk semua anggota 7B.';
+    cfmAction=onYes;cfmOk.disabled=false;cfmOk.textContent='🗑️ Hapus';
+    cfmOv.classList.add('active');
+  }
+  cfmNo.addEventListener('click',closeConfirm);
+  cfmOv.addEventListener('click',e=>{if(e.target===cfmOv&&!cfmOk.disabled)closeConfirm()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cfmOv.classList.contains('active')&&!cfmOk.disabled)closeConfirm()});
+  cfmOk.addEventListener('click',async()=>{
+    if(!cfmAction||cfmOk.disabled)return;
+    const fn=cfmAction;cfmOk.disabled=true;cfmOk.textContent='Menghapus...';
+    try{await fn()}finally{closeConfirm()}
+  });
+
   // --- Papan Menfess ---
   const mfForm=document.getElementById('mfForm'),mfSender=document.getElementById('mfSender'),mfMsg=document.getElementById('mfMsg');
   const mfCount=document.getElementById('mfCount'),mfStatus=document.getElementById('mfStatus'),mfBtn=document.getElementById('mfSubmitBtn'),mfGrid=document.getElementById('mfGrid');
   const mfFile=document.getElementById('mfFile'),mfPhotoBtn=document.getElementById('mfPhotoBtn'),mfPrev=document.getElementById('mfPreview'),mfPrevImg=document.getElementById('mfPreviewImg'),mfPrevSz=document.getElementById('mfPreviewSize'),mfClear=document.getElementById('mfClearPhoto');
   const samples=Array.from(mfGrid.querySelectorAll('[data-sample="1"]'));
-  let cat='Semangat',mfPhoto='';
+  let cat='Semangat',mfPhoto='',lastMfSig='';
 
   document.querySelectorAll('.mf-cat-btn').forEach(b=>b.addEventListener('click',()=>{
     cat=b.dataset.cat||'Semangat';
@@ -1775,6 +1923,15 @@
     }catch(err){clearMfPhoto();setMf(typeof err==='string'?err:'Gagal memproses foto.',1)}
   });
 
+  async function deleteMenfess(key){
+    if(!key)return;
+    try{
+      const r=await fetch(DB+'/menfess/'+encodeURIComponent(key)+'.json',{method:'DELETE'});
+      if(!r.ok)throw 0;
+      setMf('Menfess berhasil dihapus.',0);await loadMf(1);setTimeout(()=>setMf('',0),2200);
+    }catch(_){setMf('Gagal menghapus menfess.',1)}
+  }
+
   function makeCard(x){
     const cats=['Semangat','Quotes','Random','Curhat'],rc=String(x.category||x.kategori||'Random'),c=cats.includes(rc)?rc:'Random';
     const card=el('article','mf-card');card.dataset.cat=c;
@@ -1785,20 +1942,33 @@
     top.appendChild(meta);
     if(msg)top.appendChild(el('p','mf-body',msg));
     if(isImg(x.foto))top.appendChild(makePhotoEl(x.foto,'Dari: '+sender+(msg?' — '+msg:'')));
-    const from=el('div','mf-from');
-    from.append(el('span','','Dari: '+sender),el('span','','Live'));
+    const from=el('div','mf-from'),fromR=el('span','mf-from-right');
+    fromR.appendChild(el('span','','Live'));
+    const myN=(myName||'').trim().toLowerCase();
+    const isMineMf=!!(x._k&&((myN&&sender.toLowerCase()===myN)||(x.uid&&x.uid===uid)));
+    if(isMineMf){
+      const delB=el('button','del-msg-btn','🗑️');delB.type='button';
+      delB.title='Hapus menfess ini';delB.setAttribute('aria-label','Hapus menfess ini');
+      delB.addEventListener('click',()=>askConfirm('Hapus pesan ini?','Menfess akan dihapus permanen dari papan untuk semua orang.',()=>deleteMenfess(x._k)));
+      fromR.appendChild(delB);
+    }
+    from.append(el('span','','Dari: '+sender),fromR);
     card.append(top,from);return card;
   }
 
-  async function loadMf(){
+  async function loadMf(force){
     try{
       const r=await fetch(MF_URL);if(!r.ok)throw 0;
-      const d=await r.json();mfGrid.textContent='';
-      if(d&&typeof d==='object'){
-        Object.keys(d).map(k=>Object.assign({_k:k},d[k])).filter(x=>x&&(x.message||x.pesan||x.text||isImg(x.foto)))
+      const d=await r.json();
+      const list=(d&&typeof d==='object')
+        ?Object.keys(d).map(k=>Object.assign({_k:k},d[k])).filter(x=>x&&(x.message||x.pesan||x.text||isImg(x.foto)))
           .sort((a,b)=>(Number(b.timestamp||b.createdAt||0)-Number(a.timestamp||a.createdAt||0))||(a._k<b._k?1:-1))
-          .forEach(x=>mfGrid.appendChild(makeCard(x)));
-      }
+        :[];
+      const sig=list.map(x=>x._k).join(',')+'|'+((myName||'').trim().toLowerCase());
+      if(sig===lastMfSig&&!force)return;
+      lastMfSig=sig;
+      mfGrid.textContent='';
+      list.forEach(x=>mfGrid.appendChild(makeCard(x)));
       samples.forEach(c=>mfGrid.appendChild(c));
     }catch(_){setMf('Gagal memuat menfess terbaru.',1)}
   }
@@ -1807,14 +1977,14 @@
     e.preventDefault();
     const raw=mfMsg.value.trim();
     if(!raw&&!mfPhoto){setMf('Tulis pesan atau pilih foto dulu ya!',1);mfMsg.focus();return}
-    const now=Date.now(),p={sender:censor(mfSender.value.trim()||'Anonim').slice(0,30)||'Anonim',category:cat,message:censor(raw).slice(0,150),timestamp:now,timeLabel:fmtD(now)};
+    const now=Date.now(),p={sender:censor(mfSender.value.trim()||'Anonim').slice(0,30)||'Anonim',uid:uid,category:cat,message:censor(raw).slice(0,150),timestamp:now,timeLabel:fmtD(now)};
     if(mfPhoto)p.foto=mfPhoto;
     mfBtn.disabled=true;mfBtn.textContent='Mengirim...';setMf('Mengirim ke papan menfess...',0);
     try{
       const r=await fetch(MF_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
       if(!r.ok)throw 0;
       mfMsg.value='';mfCount.textContent='0/150';mfCount.classList.remove('near');clearMfPhoto();
-      setMf('Menfess berhasil dikirim!',0);await loadMf();setTimeout(()=>setMf('',0),3000);
+      setMf('Menfess berhasil dikirim!',0);await loadMf(1);setTimeout(()=>setMf('',0),3000);
     }catch(_){setMf('Gagal mengirim menfess. Coba lagi ya.',1)}
     finally{mfBtn.disabled=false;mfBtn.textContent='Kirim Menfess'}
   });
@@ -1897,7 +2067,7 @@
     myName=cleaned;cName.value=myName;
     if(roster.includes(myName))stuPick.value=myName;
     try{localStorage.setItem('chat7b_name',myName);localStorage.setItem('chat7b_avatar',myAvatar||'')}catch(_){}
-    profRow.hidden=true;renderProfile();loadChat(1);setCs('',0);
+    profRow.hidden=true;renderProfile();loadChat(1);loadMf(1);setCs('',0);
     return true;
   }
 
@@ -1935,6 +2105,15 @@
     }catch(err){clearChatPhoto();setCs(typeof err==='string'?err:'Gagal memproses foto.',1)}
   });
 
+  async function deleteChatMsg(key){
+    if(!key)return;
+    try{
+      const r=await fetch(DB+'/chat7b/'+encodeURIComponent(key)+'.json',{method:'DELETE'});
+      if(!r.ok)throw 0;
+      setCs('Pesan berhasil dihapus.',0);await loadChat(1);setTimeout(()=>setCs('',0),2000);
+    }catch(_){setCs('Gagal menghapus pesan.',1)}
+  }
+
   async function loadChat(force){
     try{
       const r=await fetch(CH_URL);if(!r.ok)throw 0;
@@ -1948,23 +2127,31 @@
       }
       const list=Object.keys(d).map(k=>Object.assign({_k:k},d[k])).filter(x=>x&&(x.message||x.pesan||x.text||isImg(x.foto)||isAudio(x.audio)))
         .sort((a,b)=>(Number(a.timestamp||0)-Number(b.timestamp||0))||(a._k<b._k?-1:1)).slice(-80);
-      const sig=list.length+':'+(list.length?list[list.length-1]._k:'');
+      const myN=myName.trim().toLowerCase();
+      const sig=list.map(x=>x._k).join(',')+'|'+myN;
       cMeta.textContent=list.length+' pesan • Live';
       if(sig===lastSig&&!force)return;
       lastSig=sig;
-      const myN=myName.trim().toLowerCase(),avCache={};
+      const avCache={};
       list.forEach(x=>{const nm=String(x.name||x.nama||x.sender||'').trim().toLowerCase();if(nm&&isImg(x.avatar))avCache[nm]=x.avatar});
       cList.textContent='';
       if(!list.length){cList.appendChild(el('div','chat-empty','Belum ada chat. Mulai obrolan pertama 7B!'));return}
       list.forEach(x=>{
         const s=censor(x.name||x.nama||x.sender||'Siswa 7B').trim()||'Siswa 7B';
-        const mine=(x.uid&&x.uid===uid)||(myN&&s.toLowerCase()===myN);
+        const mine=(myN&&s.toLowerCase()===myN)||(x.uid&&x.uid===uid);
         const msg=censor(x.message||x.pesan||x.text||'').trim();
         const avSrc=(mine&&myAvatar)?myAvatar:(isImg(x.avatar)?x.avatar:avCache[s.toLowerCase()]);
         const row=el('div','chat-row '+(mine?'mine':'other'));
         const avEl=el('div','av-circle xs');setAv(avEl,s,avSrc);
-        const b=el('div','chat-bubble'),h=el('div','chat-head');
-        h.append(el('span','chat-sender',mine?s+' (Kamu)':s),el('span','chat-time',x.timeLabel||fmtT(x.timestamp)));
+        const b=el('div','chat-bubble'),h=el('div','chat-head'),hr=el('span','chat-head-right');
+        hr.appendChild(el('span','chat-time',x.timeLabel||fmtT(x.timestamp)));
+        if(mine&&x._k){
+          const delB=el('button','del-msg-btn','🗑️');delB.type='button';
+          delB.title='Hapus pesan ini';delB.setAttribute('aria-label','Hapus pesan ini');
+          delB.addEventListener('click',()=>askConfirm('Hapus pesan ini?','Pesan chat ini akan dihapus permanen untuk semua orang.',()=>deleteChatMsg(x._k)));
+          hr.appendChild(delB);
+        }
+        h.append(el('span','chat-sender',mine?s+' (Kamu)':s),hr);
         b.appendChild(h);
         if(msg)b.appendChild(el('div','chat-text',msg));
         if(isAudio(x.audio)){
@@ -2066,7 +2253,7 @@
   vnSend.addEventListener('click',()=>stopVn(false));
   vnCancel.addEventListener('click',()=>stopVn(true));
 
-  renderProfile();loadMf();loadChat(1);setInterval(()=>loadChat(0),3000);
+  renderProfile();loadMf(1);loadChat(1);setInterval(()=>loadChat(0),3000);setInterval(()=>loadMf(0),6000);
 
   // --- 9. Game 7B Gartic Multiplayer (Lobby, Topik, Giliran Otomatis: /gartic_rooms.json) ---
   const ROOMS_URL=DB+'/gartic_rooms.json';
